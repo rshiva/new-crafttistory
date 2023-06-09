@@ -1,0 +1,136 @@
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body{
+  background-color: #d8dffa;
+  font-size: 1.125rem;
+  font-family: 'Lato', sans-serif;;
+  overflow-x: hidden;
+}
+
+.primary-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 32px;
+  background: #7d4fe8;
+  border-bottom: 1px solid hsl(190deg 5% 80%);
+}
+.mobile-nav-toggle{
+  display: none;
+}
+.logo{
+  flex: 1;
+  color: white;
+  font-size: 1.75rem;
+  font-family: 'Playfair Display', sans-serif;
+  font-weight: 500;
+}
+.primary-navigation > li{
+  list-style-type: none;
+}
+
+.primary-navigation{
+  color: white;
+  display: flex;
+  gap: clamp(1rem, 9.2vw - 4.5rem, 3.5rem);
+  margin: 0px 48px;
+}
+nav a:hover{
+  color: lightsalmon;
+}
+main{
+  display: grid;
+  --min-row-height: min(320px,100%);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: 1fr;
+  min-height: 200%;
+  width: 100%;
+}
+
+.section-1, .section-2, .section-3{
+  display: flex;
+  justify-content: space-around;
+}
+.section-1{
+  background-image: url(assets/images/layered-waves.svg);
+  background-size: cover;
+}
+
+.section-1-image{
+  width: 75%;
+  height: 100%;
+  /* border: 1px solid red; */
+}
+
+.section-1-text{
+  color: black;
+  font-size: 1.5rem;
+  padding: 2rem;
+  margin: 4rem;
+  /* border: 2px solid red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.section-1-text p:first-of-type{
+  margin-bottom: 2rem;
+}
+
+.wave{
+  display: inline-block;
+  animation: wave-hand 1000ms infinite alternate ease-in-out;
+  transform-origin: 80% 75%;
+  padding: 0.25rem;
+  will-change: transform;
+}
+@keyframes wave-hand {
+  from{
+    transform: rotate(0deg)
+  }
+  to{
+    transform: rotate(30deg)
+  }
+}
+
+@media (max-width: 35em) {
+  .primary-navigation{
+    position: fixed;
+    inset: 0 -50px 0 43%;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    padding: 2rem;
+    background-color: hsl(212 74% 64% / 0.1);
+    backdrop-filter: blur(1rem);
+    gap: 1.5rem;
+    transform: translateX(100%);
+    transition: transform 400ms ease-in-out;
+  }
+  .primary-navigation[data-visible="true"]{
+    transform: translateX(0%);
+  }
+  .mobile-nav-toggle{
+    display: block;
+    z-index: 9999;
+
+  }
+  .primary-navigation >li > a:hover{
+    color: lightsalmon;
+  }
+  .section-1{
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .section-1-text{
+    /* border: 1px solid; */
+    margin: 2rem;
+    padding: 1rem;
+  }
+
+}
