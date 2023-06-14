@@ -10,9 +10,31 @@ import { annotate } from 'https://unpkg.com/rough-notation?module';
 //     console.error('Error loading header:', error);
 //   });
 
-// $(document).ready(function(){
+$(document).ready(function(){
   // $(".primary-header").load("header.html");
-  // $(".footer").load("footer.html ");
+  $(".footer").load("footer.html ");
+
+  fetch("./header.html")
+  .then(response => {
+    return response.text()
+  })
+  .then(data => {
+    document.querySelector(".primary-header").innerHTML = data;
+    const nav = document.querySelector(".primary-navigation");
+    const navToggle = document.querySelector(".mobile-nav-toggle");
+
+    navToggle.addEventListener("click", () => {
+      const visiblity = nav.getAttribute("data-visible");
+      console.log(visiblity)
+      if (visiblity === "false") {
+          nav.setAttribute("data-visible", true);
+          navToggle.setAttribute("aria-expanded", true);
+      } else {
+          nav.setAttribute("data-visible", false);
+          navToggle.setAttribute("aria-expanded", false);
+      }
+    }) ; 
+  });
 
   setTimeout(function() {
   const e = document.querySelector('#notation');
@@ -20,24 +42,10 @@ import { annotate } from 'https://unpkg.com/rough-notation?module';
   annotation.show();
 
   const nameQuery = document.querySelector('#name-annotate');
-  const nameAnnotation = annotate(nameQuery, { type: 'highlight', color: '#5bbfe7' });
+  const nameAnnotation = annotate(nameQuery, { type: 'underline', color: '#5bbfe7' });
   nameAnnotation.show();
 
    }, 200);
 
-  const nav = document.querySelector(".primary-navigation");
-  const navToggle = document.querySelector(".mobile-nav-toggle");
-
-  navToggle.addEventListener("click", () => {
-    const visiblity = nav.getAttribute("data-visible");
-    console.log(visiblity)
-    if (visiblity === "false") {
-        nav.setAttribute("data-visible", true);
-        navToggle.setAttribute("aria-expanded", true);
-    } else {
-        nav.setAttribute("data-visible", false);
-        navToggle.setAttribute("aria-expanded", false);
-    }
-  }) ; 
-// });
+});
 
